@@ -1,0 +1,17 @@
+local lazy = {}
+
+function lazy.httpimport(URL, Name, Path)
+    -- Perform HTTP GET request to fetch raw data
+    local response = game:HttpGetAsync(URL)
+    
+    -- Define the full path to save the file
+    local fullPath = Path .. "/" .. Name
+    
+    -- Write the raw data to the file using the writefile function provided by the executor
+    writefile(fullPath, response)
+    
+    print("File saved successfully to " .. fullPath)
+end
+
+-- Example usage
+lazy.httpimport("http://example.com/data.txt", "data.txt", "workspace")
